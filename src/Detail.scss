@@ -1,0 +1,42 @@
+@import "./_reset.scss";
+
+$메인칼라: #ff0000;
+
+.red {
+	margin: 0 auto;
+	padding: 1vw;
+	color: $메인칼라;
+}
+
+div.container {
+	h4 {
+		color: blue;
+	}
+}
+@mixin 함수() {
+	background-color: red;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.my-alert {
+	@include 함수();
+	p {
+		margin: 0;
+	}
+}
+
+.my-alert-blue {
+	@extend .my-alert;
+	background-color: dodgerblue;
+}
+
+//시작점
+.wow-enter {
+	opacity: 0;
+}
+//동작때
+.wow-enter-active {
+	opacity: 1;
+	transition: all 500ms;
+}

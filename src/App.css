@@ -1,0 +1,13 @@
+.bg {
+	background-image: url("./18-03-2021_x_1f-k101-1-1_m9.webp");
+	background-size: cover;
+	color: #fff;
+	margin: 0 auto;
+	width: 100% !important;
+	justify-content: center;
+	align-items: center;
+}
+
+.row {
+	flex-direction: column;
+}
