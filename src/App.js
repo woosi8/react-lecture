@@ -9,12 +9,15 @@ import {
 import "./App.css";
 import Data from "./data";
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useState, lazy, Suspense } from "react";
 import { useHistory } from "react-router";
 import { Link, Route, Switch } from "react-router-dom";
-import Detail from "./Detail";
+// import Detail from "./Detail";
 import axios from "axios";
 import Cart from "./Cart";
+let Detail = lazy(() => {
+	return import("./Detail.js");
+}); //Detail이 필요한 순간에 import 해준다
 
 export let 재고context = React.createContext(""); //1.범위 생성
 
@@ -106,7 +109,9 @@ function App() {
 				</Route>
 				<Route path="/detail">
 					<재고context.Provider value={stock}>
-						<Detail stock={stock} setStock={setStock} />
+						<Suspense fallback={<div>로딩중이에요</div>}>
+							<Detail stock={stock} setStock={setStock} />
+						</Suspense>
 					</재고context.Provider>
 				</Route>
 

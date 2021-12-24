@@ -165,4 +165,17 @@ function state를props화(state) {
 		alert열렸니: state.reducer2,
 	};
 }
+
+// 번외 - 함수안엔 함수 실행
+
+function first(params) {
+	console.log(1);
+	params(); //second 함수 실행
+}
+function second() {
+	console.log(2);
+}
+
+first(second); //first실행하라 파라미터로 second넣어서
+
 export default connect(state를props화)(Detail);

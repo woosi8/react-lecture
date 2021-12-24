@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, memo } from "react";
 import { Table } from "react-bootstrap";
 import { connect, useDispatch, useSelector } from "react-redux";
 
@@ -8,6 +8,8 @@ const Cart = (props) => {
 	console.log(state.reducer);
 	// dispatch
 	let dispatch = useDispatch();
+
+	function 버튼누르면() {}
 
 	return (
 		<div>
@@ -63,10 +65,37 @@ const Cart = (props) => {
 					</button>
 				</div>
 			) : null}
+			<Parent 이름="존박" 나이="20" />
 		</div>
 	);
 };
 
+// Usememo 불필요한 재랜더링 막기 기능 (단점 : 방식이 기존 props vs 바뀐 props 비교연산 후 컴포넌트 업데이트 여부를 결정하기 떄문에 props가 많아지면 사이트 속도 저하이유가됨)
+//컴포넌트에 있는 props나 state가 변경되면 안에 있는 코드 전부 재랜더링
+// ex) 위에서 Parent 이름="존박1"
+function Parent(props) {
+	return (
+		<div>
+			<Child1 이름={props.이름}></Child1>
+			<Child2 나이={props.나이}></Child2>
+		</div>
+	);
+}
+function Child1(props) {
+	useEffect(() => {
+		console.log("랜더링됨1");
+	});
+	return <div>1111</div>;
+}
+//memo : props.나이가 변경이 될때만 재렌더링된다
+let Child2 = memo(function () {
+	useEffect(() => {
+		console.log("랜더링됨2");
+	});
+	return <div>222</div>;
+});
+
+// ------------------------------------------------
 // //redux store 데이터를 가져와서 props로 변환해주는 함수
 // function state를props화(state) {
 // 	console.log(state);
