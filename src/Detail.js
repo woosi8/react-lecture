@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router";
+// import {  } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
 import { 재고context } from "./App.js";
@@ -13,17 +14,33 @@ let 제목 = styled.h4`
 	color: ${(props) => props.색상};
 `;
 const Detail = (props) => {
+	let { id } = useParams();
 	const [alerts, setAlerts] = useState("재고가 얼마 남지 않았다");
 	const [alerts2, setAlerts2] = useState(true);
 	const [inputData, setInputData] = useState("");
 	const [누른탭, 누른탭변경] = useState(0);
 	const [스위치, 스위치변경] = useState(false);
+	console.log(id);
+
+	useEffect(() => {
+		var arr = localStorage.getItem("watched");
+		if (arr == null) {
+			arr = [];
+		} else {
+			1;
+			arr = JSON.parse(arr);
+		}
+		// arr.push(id);
+		arr = new Set(arr); //중복 제거
+		arr = [...arr];
+		localStorage.setItem("watched", JSON.stringify(arr));
+	}, []);
 
 	function onClick(params) {}
 	let 재고 = useContext(재고context);
 
 	useEffect(() => {
-		console.log(1111);
+		// console.log(1111);
 		let timer = setTimeout(() => {
 			setAlerts("");
 			setAlerts2(false);
