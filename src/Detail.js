@@ -27,7 +27,6 @@ const Detail = (props) => {
 		if (arr == null) {
 			arr = [];
 		} else {
-			1;
 			arr = JSON.parse(arr);
 		}
 		// arr.push(id);

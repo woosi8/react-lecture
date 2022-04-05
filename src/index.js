@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import App from "./App";
 // import { HashRouter } from "react-router-dom"; // 서버와 통신하지 않고 라우팅을 한다
 import { BrowserRouter } from "react-router-dom";
+
 import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 // import Detailreducer from "./Redux/Detail"
-
+import { useRoutes } from "react-router-dom";
 let 초기값 = [
 	{ id: 0, name: "멋진신발", quan: 2 },
 	{ id: 1, name: "nike", quan: 5 },
@@ -18,9 +19,10 @@ function reducer(state = 초기값, 액션) {
 	//액션은 dispatch 할때의 데이터들을 담고있다
 	// 데이터 수정 방법을 저장
 	if (액션.type === "항목추가") {
+		// , array안에서 내가 찾는 데이터 찾기
 		let found = state.findIndex((a) => {
 			// a는 state의 항목 전부
-			return a.id === 액션.payload.id;
+			return a.id === 액션.payload.id; //조건식- state안에 id가 액션 데이터 인게 있나?
 		});
 		if (found >= 0) {
 			let copy = [...state];
